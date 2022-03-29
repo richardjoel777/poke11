@@ -23,6 +23,10 @@ const TournamentSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  teams: {
+    type: [[String]],
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("Tournament", TournamentSchema);

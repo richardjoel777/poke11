@@ -8,14 +8,15 @@ const withAuth = function (req, res, next) {
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
-  if (req.url === "/play") {
-    token = req.cookies.token;
-  }
+  // if (req.url === "/play") {
+  //   token = req.cookies.token;
+  // }
   if (!token) {
     res.status(401).json({ message: "Unauthorized: No token provided" });
   } else {
     jwt.verify(token, secret, function (err, decoded) {
       if (err) {
+        console.log("error in here");
         res.status(401).json({ message: "Unauthorized: Invalid token" });
       } else {
         req.email = decoded.email;

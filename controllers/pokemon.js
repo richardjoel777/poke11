@@ -99,6 +99,7 @@ exports.postTournament = async (req, res) => {
 
     tournament.leaderBoard = leaderBoard;
     tournament.isFinished = true;
+    tournament.teams = teams;
 
     await tournament.save();
     res.setHeader("Content-Type", "application/json");
