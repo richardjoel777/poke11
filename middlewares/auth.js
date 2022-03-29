@@ -1,7 +1,16 @@
 const jwt = require("jsonwebtoken");
 const secret = "mysecretsshhh";
 const withAuth = function (req, res, next) {
-  const token = req.cookies.token;
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.split(" ")[0] === "Bearer"
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+  if (req.url === "/play") {
+    token = req.cookies.token;
+  }
   if (!token) {
     res.status(401).json({ message: "Unauthorized: No token provided" });
   } else {

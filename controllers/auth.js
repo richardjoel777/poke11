@@ -49,7 +49,11 @@ exports.postLogin = (req, res) => {
           const token = jwt.sign(payload, secret, {
             expiresIn: "30h",
           });
-          res.cookie("token", token, { httpOnly: true }).sendStatus(200);
+          // console.log('')
+          res
+            .cookie("token", token, { httpOnly: false })
+            .status(200)
+            .json({ token: token });
         }
       });
     }

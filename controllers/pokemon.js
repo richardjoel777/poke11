@@ -14,7 +14,7 @@ exports.getTournament = async (req, res) => {
   var user = await User.findOne({ email });
   console.log(user);
 
-  const trainers = await Trainer.aggregate([{ $sample: { size: 6 } }]);
+  const trainers = await Trainer.aggregate([{ $sample: { size: 5 } }]);
 
   //   console.log(trainers);
 
